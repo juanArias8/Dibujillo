@@ -30,13 +30,20 @@ body{
     cursor: pointer;
 }
 .title{
-    text-align: center;
-    background-color: rgba(0,0,0,0.0);
-    padding: 1%;
-    color: black;
+    position: fixed;
+    padding: 0.5%;
+    height: 50px;
+    width: 50px;
+    background-color: rgba(0,0,0,1);
+    border-radius: 100%;
+    margin-left: 45%;
+}
+.title:hover{
+    cursor: pointer;
 }
 .dibujillo{
-    padding: 1%;
+   color:white;
+   text-align: center;
 }
 .controler{
     background: rgba(0,0,0, 0.2);

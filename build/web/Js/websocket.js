@@ -37,7 +37,7 @@ function onOpen() {
 function onMessage(evt) {
     console.log('Received ==>' + evt.data);
     var obj = JSON.parse(evt.data);
-        draw(evt.data);
+    draw(evt.data);
    
 }
 

@@ -2,7 +2,7 @@ package com.edu.udea.ws;
 
 /**
  *
- * @author Juan Diego
+ * @author Juan David Arias
  */
 public class Coordinates {
 

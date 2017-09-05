@@ -23,6 +23,7 @@ var nombre = $("#nombre");
 var exampleModal = $("#exampleModal");
 var title = $("#title");
 var dibujillo = $("#dibujillo");
+var listPlayers = $("#listPlayers");
 var nombres = [];
 
 slideText
@@ -43,29 +44,19 @@ slideText
 	    });	    
 	});
 
-dibujillo.slideUp("slow");   
 title
 	.on("mouseover", function(){
-		dibujillo.slideDown(1000);
-		$("body").css({"overflow":"hidden"});
 		title.css({
 			"background-color": "rgba(0,0,0,8)",
 			"color": "white"
-		});
-				
+		});		
 	})
 	.on("mouseleave", function(){
-		dibujillo.slideUp(1000);
-		$("body").css({"overflow":"hidden"});	
 		title.css({
 			"background-color": "rgba(0,0,0,0.0)",
 		    "padding": "1%",
 		    "color": "black"
 	    });
-	    
-	    setTimeout(function(){
-			dibujillo.stop(true, true);
-		}, 1000);
 	});
 
 btnIngresar.on("click", function(){
@@ -77,6 +68,7 @@ btnIngresar.on("click", function(){
 		exampleModal.modal("hide");
 		landing.fadeOut("slow");
 		mainContent.fadeIn("slow");
+		listPlayers.html(`<li class="list-group-item list-group-item-success">${nombres[0]}</li>`);
 	} else {
 		nombre.val("");
 		alertMain.fadeIn( "slow" );

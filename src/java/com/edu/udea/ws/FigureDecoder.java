@@ -14,7 +14,7 @@ import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 /**
  *
- * @author Juan Diego
+ * @author Juan David Arias
  */
 public class FigureDecoder implements Decoder.Text<Figure>{
 

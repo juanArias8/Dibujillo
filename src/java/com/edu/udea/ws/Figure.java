@@ -5,7 +5,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 /**
  *
- * @author Juan Diego
+ * @author Juan David Arias
  */
 public class Figure {
 

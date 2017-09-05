@@ -10,7 +10,7 @@ import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 /**
  *
- * @author Juan Diego
+ * @author Juan David Arias
  */
 public class FigureEncoder implements Encoder.Text<Figure>{
 

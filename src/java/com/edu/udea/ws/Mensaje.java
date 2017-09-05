@@ -7,7 +7,7 @@ package com.edu.udea.ws;
 
 /**
  *
- * @author jnda
+ * @author Juan David Arias
  */
 public class Mensaje {
     
