@@ -1,41 +1,15 @@
-document.onload(){
-    var landing = $("#landing");
-    var mainContent = $("#mainContent");
-    var messageWin = $("#messageWin");
-
-    landing.show(0);
-    mainContent.hide(0);
-    messageWin.hide(0);
-}
-
-
-
-var canvas = $("#myCanvas");
-var colors = $("#colors");
-var size = $("#size");
-var context = canvas.getContext("2d");
-
-var tipoClick = false;
-var punto = 0;
-var color = colores.value;
-
 var canvas = document.getElementById("myCanvas");
 var context = canvas.getContext("2d");
-var salida = document.getElementById("salida");
-var colores = document.getElementById("colores");
-var listaTam = document.getElementById("tamano");
-var save = document.getElementById("imagen");
-var figura = document.getElementById("figura");
+var colors = document.getElementById("colors");
+var size = document.getElementById("size");
+var figure = document.getElementById("figure");
 var tipoClick = false;
 var punto = 0;
-var color = colores.value;
+var color = colors.value;
 var tamano = 5;
 var s = 1;
 var dragging = false;
 var dragStartLocation;
-var fillBox = document.getElementById("fillBox");
-var polygonSides = document.getElementById("polygonSides");
-var polygonAngle = document.getElementById("polygonAngle");
 var snapshot;
 var actualPos;
 
@@ -45,7 +19,7 @@ canvas.addEventListener('mousemove', drag, false);
 canvas.addEventListener('mouseup', dragStop, false);
 
 function dragStart(event) {
-    if ((figura.value === "lapiz") || (figura.value === "borrador")) {
+    if ((figure.value === "lapiz") || (figure.value === "borrador")) {
         tipoClick = true;
         actualPos = getCanvasCoordinates(event);
     } else {
@@ -56,7 +30,7 @@ function dragStart(event) {
 }
 
 function drag(event) {
-    if (figura.value === "lapiz") {
+    if (figure.value === "lapiz") {
         if (tipoClick) {
             punto = getCanvasCoordinates(event);
             sendFigures("lapiz", punto);
@@ -65,7 +39,7 @@ function drag(event) {
                 y: punto.y
             };
         }
-    } else if (figura.value === "borrador") {
+    } else if (figure.value === "borrador") {
         if (tipoClick) {
             punto = getCanvasCoordinates(event);
             sendFigures("borrador", punto);
@@ -79,98 +53,52 @@ function drag(event) {
         if (dragging === true) {
             restoreSnapshot();
             position = getCanvasCoordinates(event);
-            d = {"tipo": figura.value,
+            d = {"tipo": figure.value,
                 "x1": position.x,
                 "y1": position.y,
                 "x2": dragStartLocation.x,
                 "y2": dragStartLocation.y,
-                "color": colores.value,
-                "tamano": listaTam.value,
-                "fill": fillBox.checked,
-                "sides": polygonSides.value,
-                "angle": polygonAngle.value * (Math.PI / 180),
-                "limpiar": s};
+                "color": colors.value,
+                "tamano": size.value};
             draw(JSON.stringify(d));
         }
     }
 }
 
-
 function dragStop(event) {
-    if (figura.value === "lapiz") {
+    if (figure.value === "lapiz") {
         tipoClick = false;
-    } else if (figura.value === "borrador") {
+    } else if (figure.value === "borrador") {
         tipoClick = false;
     } else {
         dragging = false;
         var position = getCanvasCoordinates(event);
-        sendFigures(figura.value, position);
+        sendFigures(figure.value, position);
     }
 }
 
-function draw(figura)
+function draw(figure)
 {
-    figura = JSON.parse(figura);
-    if (figura.limpiar === 0) {
-        context.clearRect(0, 0, 880, 500);
+    figure = JSON.parse(figure);
+    context.lineWidth = figure.tamano;
+    context.strokeStyle = figure.color;
+    context.fillStyle = figure.color;
+    if (figure.tipo === "lapiz") {
+        drawPunto(figure);
+    } else if (figure.tipo === "borrador") {
+        drawPunto(figure);
+    } else if (figure.tipo === "linea") {
+        drawLine(figure);
     } else {
-        context.lineWidth = figura.tamano;
-        context.strokeStyle = figura.color;
-        context.fillStyle = figura.color;
-        if (figura.tipo === "lapiz") {
-            drawPunto(figura);
-        } else if (figura.tipo === "borrador") {
-            drawPunto(figura);
-        } else if (figura.tipo === "linea") {
-            drawLine(figura);
-        } else if (figura.tipo === "cuadro") {
-            drawRect(figura);
-        } else if (figura.tipo === "circulo") {
-            drawCircle(figura);
-        } else if (figura.tipo === "poligono") {
-            drawPolygon(figura);
-        }
-        if (figura.fill) {
-            context.fill();
-        } else {
-            context.stroke();
-        }
+        context.stroke();
     }
 }
 
-function drawLine(figura) {
+function drawLine(figure) {
     context.beginPath();
-    context.moveTo(figura.x2, figura.y2);
-    context.lineTo(figura.x1, figura.y1);
+    context.moveTo(figure.x2, figure.y2);
+    context.lineTo(figure.x1, figure.y1);
     context.stroke();
-    context.closePath();
-}
-
-function drawCircle(position) {
-    var radius = Math.sqrt(Math.pow((position.x2 - position.x1), 2) + Math.pow((position.y2 - position.y1), 2));
-    context.beginPath();
-    context.arc(position.x2, position.y2, radius, 0, 2 * Math.PI, false);
-}
-
-function drawRect(position) {
-    context.beginPath();
-    context.rect(position.x2, position.y2, position.x1 - position.x2, position.y1 - position.y2);
-}
-
-function drawPolygon(position) {
-    var coordinates = [],
-            radius = Math.sqrt(Math.pow((position.x2 - position.x1), 2) + Math.pow((position.y2 - position.y1), 2)),
-            index = 0;
-
-    for (index = 0; index < position.sides; index++) {
-        coordinates.push({x: position.x2 + radius * Math.cos(position.angle), y: position.y2 - radius * Math.sin(position.angle)});
-        position.angle += (2 * Math.PI) / position.sides;
-    }
-    context.beginPath();
-    context.moveTo(coordinates[0].x, coordinates[0].y);
-    for (index = 1; index < position.sides; index++) {
-        context.lineTo(coordinates[index].x, coordinates[index].y);
-    }
     context.closePath();
 }
 
@@ -188,63 +116,46 @@ function getCanvasCoordinates(event) {
     return {x: x, y: y};
 }
 
-function sendFigures(figura, position) {
+function sendFigures(figure, position) {
     var d;
-    if (figura === "lapiz") {
+    if (figure === "lapiz") {
         d = {"tipo": "lapiz",
             "x": position.x,
             "y": position.y,
             "actualPosX": actualPos.x,
             "actualPosY": actualPos.y,
-            "color": colores.value,
-            "tamano": listaTam.value,
-            "fill": fillBox.checked,
-            "limpiar": s};
-    } else if (figura === "borrador") {
+            "color": colors.value,
+            "tamano": size.value};
+    } else if (figure === "borrador") {
         d = {"tipo": "borrador",
             "x": position.x,
             "y": position.y,
             "actualPosX": actualPos.x,
             "actualPosY": actualPos.y,
             "color": '#FFFFFF',
-            "tamano": listaTam.value,
-            "fill": fillBox.checked,
-            "limpiar": s};
-    } else if (figura === "linea") {
+            "tamano": size.value};
+    } else if (figure === "linea") {
         d = {"tipo": "linea",
             "x1": position.x,
             "y1": position.y,
             "x2": dragStartLocation.x,
             "y2": dragStartLocation.y,
-            "color": colores.value,
-            "tamano": listaTam.value,
-            "fill": fillBox.checked,
-            "limpiar": s};
-    } else {
-        d = {"limpiar": 0};
-    }
+            "color": colors.value,
+            "tamano": size.value};
+    } 
     draw(JSON.stringify(d));
-    sendText(JSON.stringify(d));
+    //sendText(JSON.stringify(d));
 }
 
-function drawPunto(figura) {
+function drawPunto(figure) {
     context.beginPath();
-    context.strokeStyle = figura.color;
-    context.moveTo(figura.actualPosX, figura.actualPosY);
-    context.lineTo(figura.x, figura.y);
-    context.lineWidth = figura.tamano;
-    context.fill();
+    context.strokeStyle = figure.color;
+    context.moveTo(figure.actualPosX, figure.actualPosY);
+    context.lineTo(figure.x, figure.y);
+    context.lineWidth = figure.tamano;
     context.stroke();
     context.closePath();
 }
 
-function limpiar() {
-    sendFigures("limpiar", {"x": 1, "y": 2});
-}
 
-function guardar() {
-    var dataUrl = canvas.toDataURL('image/png');
-    save.download = "tablero.png";
-    save.href = dataUrl;
-    save.click();
-}
+
