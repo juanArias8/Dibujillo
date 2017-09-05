@@ -22,12 +22,6 @@ body{
     padding: 3%;
     border-radius: 15px;
 }
-.slideText:hover{
-    background-color: rgba(0,0,0,1);
-    padding: 4%;
-    border-radius: 20px;
-    font-size: 2.5rem;
-}
 .btnHoverSlide{
     width: 30%;
 }
