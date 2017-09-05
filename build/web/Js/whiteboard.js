@@ -1,3 +1,24 @@
+document.onload(){
+    var landing = $("#landing");
+    var mainContent = $("#mainContent");
+    var messageWin = $("#messageWin");
+
+    landing.show(0);
+    mainContent.hide(0);
+    messageWin.hide(0);
+}
+
+
+
+var canvas = $("#myCanvas");
+var colors = $("#colors");
+var size = $("#size");
+var context = canvas.getContext("2d");
+
+var tipoClick = false;
+var punto = 0;
+var color = colores.value;
+
 var canvas = document.getElementById("myCanvas");
 var context = canvas.getContext("2d");
 var salida = document.getElementById("salida");
@@ -199,41 +220,6 @@ function sendFigures(figura, position) {
             "tamano": listaTam.value,
             "fill": fillBox.checked,
             "limpiar": s};
-    } else if (figura === "cuadro") {
-        d = {"tipo": "cuadro",
-            "x1": position.x,
-            "y1": position.y,
-            "x2": dragStartLocation.x,
-            "y2": dragStartLocation.y,
-            "color": colores.value,
-            "tamano": listaTam.value,
-            "fill": fillBox.checked,
-            "limpiar": s};
-
-    } else if (figura === "circulo") {
-        d = {"tipo": "circulo",
-            "x1": position.x,
-            "y1": position.y,
-            "x2": dragStartLocation.x,
-            "y2": dragStartLocation.y,
-            "color": colores.value,
-            "tamano": listaTam.value,
-            "fill": fillBox.checked,
-            "limpiar": s};
-
-    } else if (figura === "poligono") {
-        d = {"tipo": "poligono",
-            "x1": position.x,
-            "y1": position.y,
-            "x2": dragStartLocation.x,
-            "y2": dragStartLocation.y,
-            "color": colores.value,
-            "tamano": listaTam.value,
-            "fill": fillBox.checked,
-            "sides": polygonSides.value,
-            "angle": polygonAngle.value * (Math.PI / 180),
-            "limpiar": s};
-
     } else {
         d = {"limpiar": 0};
     }

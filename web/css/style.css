@@ -1,9 +1,39 @@
-/* 
-    Created on : 06-abr-2017, 21:57:18
-    Author     : Juan Diego
-*/
 body{
     background-image: url("../resources/bg.jpg");
+}
+.imgSlide{
+    width: 100%;
+}
+.carousel-control-prev-icon{
+    padding-left: 10%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: black;
+}
+.carousel-control-next-icon{
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
+.slideText{
+    background-color: rgba(0,0,0,0.5);
+    padding: 3%;
+    border-radius: 15px;
+}
+.slideText:hover{
+    background-color: rgba(0,0,0,1);
+    padding: 4%;
+    border-radius: 20px;
+    font-size: 2.5rem;
+}
+.btnHoverSlide{
+    width: 30%;
+}
+.btnHoverSlide:hover{
+    width: 50%;
+    cursor: pointer;
 }
 .title{
     text-align: center;
@@ -11,18 +41,21 @@ body{
 .controler{
     background: rgba(0,0,0, 0.2);
     border-radius: 10px;
-    height: 83vh;
+    height: 90vh;
 }
-.chat{
+.messagges{
     padding-top: 1vh;
-    background: rgba(0,0,0, 0.2);
+    background: rgba(0,0,0,0.2);
     border-radius: 10px;
-    height: 83vh;
+    height: 90vh;
     overflow-y: auto;
 }
 .canvas{
-    height: 83vh;
+    height: 90vh;
     border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    align-content: center;
 }
 .contChat{
     margin-top: 1vh;
@@ -31,7 +64,7 @@ body{
 .footer{
     padding-top: 0.5%;
 }
-#myCanvas{
+.myCanvas{
     background: white;
     overflow: auto;  
     border-radius: 10px;
