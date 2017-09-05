@@ -144,7 +144,7 @@ function sendFigures(figure, position) {
             "tamano": size.value};
     } 
     draw(JSON.stringify(d));
-    //sendText(JSON.stringify(d));
+    sendText(JSON.stringify(d));
 }
 
 function drawPunto(figure) {

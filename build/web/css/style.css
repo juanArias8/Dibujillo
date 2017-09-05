@@ -31,18 +31,17 @@ body{
 }
 .title{
     text-align: center;
+    background-color: rgba(0,0,0,0.0);
+    padding: 1%;
+    color: black;
+}
+.dibujillo{
+    padding: 1%;
 }
 .controler{
     background: rgba(0,0,0, 0.2);
     border-radius: 10px;
     height: 90vh;
-}
-.messagges{
-    padding-top: 1vh;
-    background: rgba(0,0,0,0.2);
-    border-radius: 10px;
-    height: 90vh;
-    overflow-y: auto;
 }
 .canvas{
     height: 90vh;
@@ -51,28 +50,36 @@ body{
     align-items: center;
     align-content: center;
 }
-.contChat{
-    margin-top: 1vh;
-    margin-bottom: 0.5%;
-}
-.footer{
-    padding-top: 0.5%;
-}
 .myCanvas{
     background: white;
     overflow: auto;  
     border-radius: 10px;
 }
-#mensaje{
-    resize: none;
+.messagges{
+    padding-top: 1vh;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    height: 90vh;
+    overflow-y: auto;
 }
-#btnEnviar{
+.words{
+    height: 48%;
+}
+.chat{
+     height: 48%;
+}
+.wordsArea{
+    height: 78%;
+}
+.messaggesArea{
+    height: 78%;
+}
+.btnHover{
+    width: 80%;
+}
+.btnHover:hover{
     width: 100%;
-}
-#conversacion{
-    margin-top: 0.5vh;
-    margin-bottom: 0.5vh;
-    padding: 0.2%;
+    cursor: pointer;
 }
 #particles-js{ 
     position:absolute; 

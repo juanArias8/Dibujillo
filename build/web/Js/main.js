@@ -21,7 +21,8 @@ slideTog = $(".slideTog");
 var btnIngresar = $("#btnIngresar");
 var nombre = $("#nombre");
 var exampleModal = $("#exampleModal");
-
+var title = $("#title");
+var dibujillo = $("#dibujillo");
 var nombres = [];
 
 slideText
@@ -40,6 +41,31 @@ slideText
 		    "padding": "3%",
 		    "border-radius": "15px"
 	    });	    
+	});
+
+dibujillo.slideUp("slow");   
+title
+	.on("mouseover", function(){
+		dibujillo.slideDown(1000);
+		$("body").css({"overflow":"hidden"});
+		title.css({
+			"background-color": "rgba(0,0,0,8)",
+			"color": "white"
+		});
+				
+	})
+	.on("mouseleave", function(){
+		dibujillo.slideUp(1000);
+		$("body").css({"overflow":"hidden"});	
+		title.css({
+			"background-color": "rgba(0,0,0,0.0)",
+		    "padding": "1%",
+		    "color": "black"
+	    });
+	    
+	    setTimeout(function(){
+			dibujillo.stop(true, true);
+		}, 1000);
 	});
 
 btnIngresar.on("click", function(){

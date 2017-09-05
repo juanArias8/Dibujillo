@@ -1,11 +1,12 @@
 var wsUri = "ws://" + document.location.host + document.location.pathname + "tablero";
 var websocket = new WebSocket(wsUri);
+/*
 var output = document.getElementById("output");
 
 var mensajes = document.getElementById('conversacion');
 var boton = document.getElementById('btnEnviar');
 var nombre = document.getElementById('usuario');
-var mensaje = document.getElementById('mensaje');
+var mensaje = document.getElementById('mensaje');*/
 
 websocket.onerror = function (evt) {
     onError(evt);
@@ -19,7 +20,7 @@ websocket.onopen = function (evt) {
     onOpen(evt);
 };
 
-boton.addEventListener('click', enviar);
+//boton.addEventListener('click', enviar);
 
 function writeToScreen(message) {
     console.log(message + "<br>");
@@ -36,17 +37,8 @@ function onOpen() {
 function onMessage(evt) {
     console.log('Received ==>' + evt.data);
     var obj = JSON.parse(evt.data);
-    var i = 0;
-    for (var key in obj) {
-        console.log(' key==>' + key + ' value==>' + obj[key]);
-        i += 1;
-    }
-    console.log(i);
-    if (i === 9 || i === 11) {
         draw(evt.data);
-    } else if (i === 2) {
-        mensajes.innerHTML += '<div class="well well-sm"><strong>' + obj.nombre + '</strong>:' + obj.mensaje + '</div>';
-    }
+   
 }
 
 function sendText(json) {
@@ -56,7 +48,7 @@ function sendText(json) {
 
 
 
-function enviar() {
+/*function enviar() {
     var msg = {
         nombre: nombre.value,
         mensaje: mensaje.value
@@ -66,4 +58,4 @@ function enviar() {
     mensajes.innerHTML += '<div class="well well-sm"\n\
                             style="overflow:auto"><strong>' + msg.nombre + '</strong>:' + msg.mensaje + '</div>';
     mensaje.value = '';
-}
+}*/
