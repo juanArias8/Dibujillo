@@ -47,16 +47,19 @@ slideText
 title
 	.on("mouseover", function(){
 		title.css({
-			"background-color": "rgba(0,0,0,8)",
-			"color": "white"
-		});		
+			"width": "20%",
+			"border-radius" : "20px",
+			"margin-left" : "38%"
+		});
+		dibujillo.text("Dibujillo");		
 	})
 	.on("mouseleave", function(){
 		title.css({
-			"background-color": "rgba(0,0,0,0.0)",
-		    "padding": "1%",
-		    "color": "black"
+			"width": "50px",
+		    "border-radius": "100%",
+		    "margin-left": "45%"
 	    });
+	    dibujillo.text("D");	
 	});
 
 btnIngresar.on("click", function(){
@@ -78,3 +81,6 @@ btnIngresar.on("click", function(){
 		},3000);
 	}
 });
+
+
+

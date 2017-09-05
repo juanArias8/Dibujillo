@@ -20,11 +20,12 @@ websocket.onopen = function (evt) {
     onOpen(evt);
 };
 
+websocket.onclose = function(evt){
+    onClose(evt);
+};
+
 //boton.addEventListener('click', enviar);
 
-function writeToScreen(message) {
-    console.log(message + "<br>");
-}
 
 function onError(evt) {
     console.log(evt.data);
@@ -37,8 +38,7 @@ function onOpen() {
 function onMessage(evt) {
     console.log('Received ==>' + evt.data);
     var obj = JSON.parse(evt.data);
-    draw(evt.data);
-   
+    draw(evt.data);   
 }
 
 function sendText(json) {

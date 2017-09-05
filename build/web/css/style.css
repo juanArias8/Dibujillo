@@ -30,7 +30,6 @@ body{
     cursor: pointer;
 }
 .title{
-    position: fixed;
     padding: 0.5%;
     height: 50px;
     width: 50px;
@@ -70,16 +69,34 @@ body{
     overflow-y: auto;
 }
 .words{
-    height: 48%;
+    height: 46%;
 }
 .chat{
-     height: 48%;
+    height: 46%;
 }
 .wordsArea{
-    height: 78%;
+    height: 70%;
+    margin-bottom: 1%;
+    text-align: left;
+    overflow: auto;
 }
 .messaggesArea{
-    height: 78%;
+    height: 70%;
+    margin-bottom: 1%;
+    text-align: left;
+    overflow: auto;
+}
+.messageInArea{
+    width: 100%;
+    margin-top: 1%;
+    padding: 1%;
+    border-radius: 15px;
+    background: white;
+    color: black;
+}
+.textMessageInArea{
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .btnHover{
     width: 80%;
