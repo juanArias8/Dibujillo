@@ -25,6 +25,10 @@ function onOpen() {
     console.log("Connected to:" + wsUri);
 }
 
+function onClose(){
+    console.log("Disconected from: " + wsUri);
+}
+
 function onMessage(evt) {
     console.log('Received ==>' + evt.data); 
     var jsonReceived = JSON.parse(evt.data);

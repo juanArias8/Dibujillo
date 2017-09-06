@@ -14,6 +14,14 @@ function drawWordClient(){
 									${wordVal}
 								</small>
 							<div>`);
+		setTimeout(function(){
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			wordsArea.empty();
+	    	if(nombreVal === nombres[0]){
+	    		solicitarPartida();
+	    	}
+	    },3000);
+
 		} else {
 			wordsArea.append(`<div class="wordInArea">
 								<small class="textWordInArea">
@@ -42,6 +50,13 @@ function drawWord(json){
 									${wordReceived}
 								</small>
 							<div>`);
+		setTimeout(function(){
+			wordsArea.empty();
+			context.clearRect(0, 0, canvas.width, canvas.height);
+	    	if(nombreVal === nombres[0]){
+	    		solicitarPartida();
+	    	}
+	    },3000);
 	} else {
 		wordsArea.append(`<div class="wordInArea">
 								<small class="textWordInArea">

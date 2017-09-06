@@ -154,8 +154,8 @@ function initGame(){
 function solicitarPartida() {
 	console.log("Solicitando partida");
 	var palabras = ["avion", "palma", "dado", "arbol", "casa", "libro", "pantalon", "computador","ventana", "mesa", "silla", "llave", "bicicleta","lapiz", "botella"];
-	var randomPalabra = Math.floor((Math.random() * palabras.length) + 1);
-	var randomPlayer = Math.floor((Math.random() * nombres.length) + 1);
+	var randomPalabra = Math.floor((Math.random() * palabras.length));
+	var randomPlayer = Math.floor((Math.random() * nombres.length));
 	var palabraSelect = palabras[randomPalabra];
 	var jugadorSelect = nombres[randomPlayer];
 
@@ -174,6 +174,7 @@ function verificarPartida(json){
 	var messageAlert = "Has sido seleccionado\n Debes dibujar: " + json.palabra;
 	if(json.jugador == nombreVal){
 		myCanvas.css("pointer-events", "");
+		btnSendWord.css("pointer-events", "none");
 		alert(messageAlert);
 	}
 }
