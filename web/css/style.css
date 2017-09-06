@@ -15,7 +15,7 @@ body{
     border-radius: 100%;
     width: 100px;
     height: 100px;
-    background-color: black;
+    background-color: black; 
 }
 .slideText{
     background-color: rgba(0,0,0,0.5);
@@ -62,29 +62,30 @@ body{
     border-radius: 10px;
 }
 .messagges{
-    padding-top: 1vh;
     background: rgba(0,0,0,0.2);
     border-radius: 10px;
     height: 90vh;
     overflow-y: auto;
 }
 .words{
-    height: 46%;
+    height: 50%;
 }
 .chat{
-    height: 46%;
+    height: 50%;
 }
 .wordsArea{
     height: 70%;
-    margin-bottom: 1%;
     text-align: left;
     overflow: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 .messaggesArea{
     height: 70%;
-    margin-bottom: 1%;
     text-align: left;
     overflow: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 .messageInArea{
     width: 100%;
@@ -95,6 +96,18 @@ body{
     color: black;
 }
 .textMessageInArea{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.wordInArea{
+    width: 100%;
+    margin-top: 1%;
+    padding: 1%;
+    border-radius: 15px;
+    background: red;
+    color: black;
+}
+.textWordInArea{
     margin-left: 5px;
     margin-right: 5px;
 }

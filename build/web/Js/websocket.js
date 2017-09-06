@@ -36,9 +36,21 @@ function onOpen() {
 }
 
 function onMessage(evt) {
-    console.log('Received ==>' + evt.data);
-    var obj = JSON.parse(evt.data);
-    draw(evt.data);   
+    console.log('Received ==>' + evt.data); 
+    var jsonReceived = JSON.parse(evt.data);
+    var keys = Object.keys(jsonReceived);
+    var option = keys[1];
+    if(option == "x"){
+        draw(evt.data);
+    } else if(option == "message"){
+        drawMessage(evt.data);
+    } else if(option == "word"){
+        drawWord(evt.data);
+    } else if(option == "score"){
+        drawPlayer(evt.data);
+    } else{
+        console.log("Ha ocurrido un error");
+    }
 }
 
 function sendText(json) {

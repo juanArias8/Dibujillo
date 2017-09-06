@@ -20,11 +20,13 @@ slideText = $(".slideText");
 slideTog = $(".slideTog");
 var btnIngresar = $("#btnIngresar");
 var nombre = $("#nombre");
+var nombreVal;
 var exampleModal = $("#exampleModal");
 var title = $("#title");
 var dibujillo = $("#dibujillo");
+
 var listPlayers = $("#listPlayers");
-var nombres = [];
+var score = 0;
 
 slideText
 	.on("mouseover", function(){
@@ -66,12 +68,15 @@ btnIngresar.on("click", function(){
 	console.log(landing);
 	nombreVal = nombre.val();
 	if(nombreVal != "" && typeof nombreVal != "undefined"){
-		nombres.push(nombreVal);
+		listPlayers.append(`<li class="list-group-item list-group-item-success">
+								</strong style="text-align:left;">${nombreVal}  </strong> ==>  <strong style="text-align:right; margin-left:5px;">  ${score}</strong>
+							</li>`);
+		var jsonPlayer = {"nombre": nombreVal, "score": score};
+		sendText(JSON.stringify(jsonPlayer));
 		nombre.val("");
 		exampleModal.modal("hide");
 		landing.fadeOut("slow");
 		mainContent.fadeIn("slow");
-		listPlayers.html(`<li class="list-group-item list-group-item-success">${nombres[0]}</li>`);
 	} else {
 		nombre.val("");
 		alertMain.fadeIn( "slow" );
@@ -83,4 +88,16 @@ btnIngresar.on("click", function(){
 });
 
 
-
+function drawPlayer(json){
+	var players = [];
+	var json = JSON.parse(json);
+	var nombreReceived = json.nombre;
+	var scoreReceived = json.score;
+	if(!nombreReceived(existe)){
+		players.push(json);
+		sendText(JSON.stringify(players))
+	}
+	listPlayers.append(`<li class="list-group-item list-group-item-success">
+							</strong style="text-align:left;">${nombreReceived}  </strong> ==>  <strong style="text-align:right; margin-left:5px;">  ${scoreReceived}</strong>
+						</li>`);
+}

@@ -5,6 +5,7 @@ import com.edu.udea.ws.FigureDecoder;
 import com.edu.udea.ws.FigureEncoder;
 import java.io.IOException;
 import static java.lang.String.format;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +21,7 @@ import javax.websocket.server.ServerEndpoint;
         decoders={FigureDecoder.class})
 public class MyWhiteboard {
 private static Set<Session> peers=Collections.synchronizedSet(new HashSet<Session>());
-    
+    ArrayList<String> array = new ArrayList<String>();
     @OnMessage
     public void broadcastFigure(Figure figure,Session session) throws IOException, EncodeException{
         for(Session peer:peers){
@@ -33,6 +34,7 @@ private static Set<Session> peers=Collections.synchronizedSet(new HashSet<Sessio
     @OnOpen
     public void onOpen(Session peer) {
         System.out.println(format("%s joined:", peer.getId()));
+        array.add(peer.getId());
         peers.add(peer);
     }
 
