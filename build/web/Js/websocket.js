@@ -46,10 +46,12 @@ function onMessage(evt) {
         drawMessage(evt.data);
     } else if(option == "word"){
         drawWord(evt.data);
-    } else if(option == "score"){
+    } else {
+        nombres.push(jsonReceived);
+        if(nombres.length == 5){
+           initGame();
+        }
         drawPlayer(evt.data);
-    } else{
-        console.log("Ha ocurrido un error");
     }
 }
 
