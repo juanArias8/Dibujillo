@@ -7,12 +7,21 @@ btnSendWord.on("click", drawWordClient);
 function drawWordClient(){
 	var wordVal = word.val();
 	if(wordVal != "" && typeof wordVal != "undefined"){
-		wordsArea.append(`<div class="wordInArea">
+		if(wordVal == palabraSel){
+			wordsArea.append(`<div class="wordInAreaMatch">
 								<small class="textWordInArea">
 									<strong>${nombreVal} : </strong>
 									${wordVal}
 								</small>
 							<div>`);
+		} else {
+			wordsArea.append(`<div class="wordInArea">
+								<small class="textWordInArea">
+									<strong>${nombreVal} : </strong>
+									${wordVal}
+								</small>
+							<div>`);
+		}
 		word.val("");
 		var jsonWord = {"nombre": nombreVal, "word": wordVal};
 		sendText(JSON.stringify(jsonWord));
@@ -26,11 +35,19 @@ function drawWord(json){
 	var json = JSON.parse(json);
 	var nombreReceived = json.nombre;
 	var wordReceived = json.word;
-	wordsArea.append(`<div class="wordInArea">
+	if(wordReceived == palabraSel){
+		wordsArea.append(`<div class="wordInAreaMatch">
 								<small class="textWordInArea">
 									<strong>${nombreReceived} : </strong>
 									${wordReceived}
 								</small>
 							<div>`);
-
+	} else {
+		wordsArea.append(`<div class="wordInArea">
+								<small class="textWordInArea">
+									<strong>${nombreReceived} : </strong>
+									${wordReceived}
+								</small>
+							<div>`);
+	}
 }

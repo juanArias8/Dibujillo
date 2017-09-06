@@ -107,6 +107,14 @@ body{
     background-color: #FF7474;
     color: black;
 }
+.wordInAreaMatch{
+    width: 100%;
+    margin-top: 1%;
+    padding: 1%;
+    border-radius: 15px;
+    background-color: #5CB85C;
+    color: black;
+}
 .textWordInArea{
     margin-left: 5px;
     margin-right: 5px;
