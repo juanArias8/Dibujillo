@@ -1,4 +1,4 @@
-var wsUri = "ws://" + document.location.host + document.location.pathname + "tablero";
+var wsUri = "ws://" + document.location.host + document.location.pathname + "dibujillo";
 var websocket = new WebSocket(wsUri);
 
 websocket.onerror = function (evt) {
